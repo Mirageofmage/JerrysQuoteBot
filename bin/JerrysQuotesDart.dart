@@ -60,13 +60,11 @@ EmbedBuilder buildEmbed(List<String> quoteData, String guildID){
   var foot = EmbedFooterBuilder();
   var auth = EmbedAuthorBuilder();
   var field = EmbedFieldBuilder();
-  var quotefield = EmbedFieldBuilder();
 
   auth.name = 'Jerry 🌵';
   auth.iconUrl = 'https://cdn.discordapp.com/avatars/148078506578935808/2a29f113d712567300a235279c9bdb3d.png';
   auth.url = 'http://jerbb.com';
 
-  quotefield.content = quote;
 
   field.name = 'Author';
   field.content = author;
@@ -78,7 +76,8 @@ EmbedBuilder buildEmbed(List<String> quoteData, String guildID){
 
   embed.author = auth;
   embed.footer = foot;
-  embed.fields.addAll([quotefield, field]);
+  embed.fields.addAll([field]);
+  embed.description = quote;
 
   day.inDays != 0 ? embed.title = 'QOTD _Day ${day.inDays}:_' : embed.title = 'QOTD:';
 
