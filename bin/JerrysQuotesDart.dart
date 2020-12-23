@@ -17,7 +17,7 @@ void main(List<String> arguments) {
     print("Ready to Eat Rocks and Burn Chalk, and I'm all out of Chalk");
   });
 
-  var c = Commander(bot, prefix: '.');
+  var c = Commander(bot, prefix: '%');
 
     c.registerCommand('help', (context, message) => context.reply(content: c.commands.map((e) => '${e.getFullCommandName()} ${e.aliases}')));
 
