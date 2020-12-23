@@ -28,6 +28,15 @@ void main(List<String> arguments) {
     quoteGroup.registerSubCommand('random', (context, message) => context.sendMessage(embed: buildEmbed(getRandomQuote(context.guild.id.toString()), context.guild.id.toString())));
     quoteGroup.registerSubCommand('search', (context, message) => context.sendMessage(embed: buildEmbed(getSearchQuote(context.guild.id.toString(), reg.stringMatch(message).toString(), which: int.parse(regNum.allMatches(message).isNotEmpty ? regNum.allMatches(message).last.group(0).toString() : '0')), context.guild.id.toString())));
     quoteGroup.registerSubCommand('add', (context, message) => context.sendMessage(embed: buildEmbed(addQuote(context.guild.id.toString(), reg.stringMatch(message).toString(), context.message.mentions.first.id.toString()), context.guild.id.toString())));
+    quoteGroup.registerSubCommand('daily', (context, message) => {
+      if(context.author.bot){
+        context.message.delete(),
+        context.sendMessage(embed: buildEmbed(getRandomQuote(context.guild.id.toString()), context.guild.id.toString()))
+      }
+      else{
+        context.sendMessage(embed: buildEmbed(['**This command can only be used by bots and webhooks**','<@722092710256967730>', DateTime.now().toString()], context.guild.id.toString()))
+      }
+    });
 
     c.registerCommand('setStartDate', (context, message) => {
       context.sendMessage(embed: buildEmbed(updateStartDate(context.guild.id.toString(), context.message.content.split(' ')[1]), context.guild.id.toString()))
